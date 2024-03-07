@@ -333,4 +333,7 @@ function shareNote(toShare){
 function retrieveAll(newDivID, newDivText, newDivColor){
     newNoteCont.innerHTML = newNoteCont.innerHTML + '<div style="border-color: ' + newDivColor + '" ' + 'id="div' + newDivID + '"><div id="buttonsCont" style="position: relative; display: flex; justify-content: flex-start; align-items: center; flex-direction: row;  height: auto; width: auto; padding-right: 7%; margin-top: 0%;"><button class="material-icons" style=" text-align: center; margin-right: 35%;" onclick="deleteCurrent(' + "'div" + newDivID + "')" + '">' + 'delete_forever</button><button class="material-icons" style="position:relative; color: darkgreen;" onclick="editFunction(' + "'label" + newDivID + "')" + '">edit</button>  <button class="material-icons" style="position: relative; color: blue;" onclick="shareNote('+"'label"+newDivID+"')"+'">share</button>  </div><div><label style="color: ' + newDivColor + '" id="label' + newDivID + '">' + newDivText.replaceAll("<br>", "\n").replaceAll("&gt;", ">").replaceAll("&lt;", "<").replaceAll("&amp;", "&") + '</label><br></div>' + '</div>';
     divId++;
+    if (divId > 1) {
+        $("#clearAllDiv").fadeIn();
+    }
 }
