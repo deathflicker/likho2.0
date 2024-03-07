@@ -21,6 +21,8 @@ var prvScroll = 0;
 var curScroll = 0;
 var triggerScroll = 0;
 
+var divUID;
+
 
 
 
@@ -99,17 +101,21 @@ function changeClr(color) {
 // When user presses add button , a new note is added.
 function newNote() {
     if (noteWrite.value != "" && noteWrite.value != " ") {
+        divUID = $.now();
         noteWrite.value = noteWrite.value.replaceAll(/\n/g, '<br>').replaceAll(">", "&gt;").replaceAll("<", "&lt;").replaceAll("&", "&amp;");
-        divId += 1;
-        newNoteCont.innerHTML = newNoteCont.innerHTML + '<div style="border-color: ' + whatColor + '" ' + 'id="div' + divId + '"><div id="buttonsCont" style="position: relative; display: flex; justify-content: flex-start; align-items: center; flex-direction: row;  height: auto; width: auto; padding-right: 7%; margin-top: 0%;"><button class="material-icons" style=" text-align: center; margin-right: 35%;" onclick="deleteCurrent(' + "'div" + divId + "')" + '">' + 'delete_forever</button><button class="material-icons" style="position:relative; color: darkgreen;" onclick="editFunction(' + "'label" + divId + "')" + '">edit</button>  <button class="material-icons" style="position: relative; color: blue;" onclick="shareNote('+"'label"+divId+"')"+'">share</button>  </div><div><label style="color: ' + whatColor + '" id="label' + divId + '">' + noteWrite.value.replaceAll("<br>", "\n").replaceAll("&gt;", ">").replaceAll("&lt;", "<").replaceAll("&amp;", "&") + '</label><br></div>' + '</div>';
-        console.log("arpanAddNew[arpanBreak]div" + divId + "[arpanBreak]" + noteWrite.value.replaceAll("<br>", "\n").replaceAll("&gt;", ">").replaceAll("&lt;", "<").replaceAll("&amp;", "&") + "[arpanBreak]" + $('#label' + divId).css("color"));
+        //divId += 1;
+        newNoteCont.innerHTML = newNoteCont.innerHTML + '<div style="border-color: ' + whatColor + '" ' + 'id="div' + divUID + '"><div id="buttonsCont" style="position: relative; display: flex; justify-content: flex-start; align-items: center; flex-direction: row;  height: auto; width: auto; padding-right: 7%; margin-top: 0%;"><button class="material-icons" style=" text-align: center; margin-right: 35%;" onclick="deleteCurrent(' + "'div" + divUID + "')" + '">' + 'delete_forever</button><button class="material-icons" style="position:relative; color: darkgreen;" onclick="editFunction(' + "'label" + divUID + "')" + '">edit</button>  <button class="material-icons" style="position: relative; color: blue;" onclick="shareNote('+"'label"+divUID+"')"+'">share</button>  </div><div><label style="color: ' + whatColor + '" id="label' + divUID + '">' + noteWrite.value.replaceAll("<br>", "\n").replaceAll("&gt;", ">").replaceAll("&lt;", "<").replaceAll("&amp;", "&") + '</label><br></div>' + '</div>';
+        console.log("arpanAddNew[arpanBreak]div" + divUID + "[arpanBreak]" + noteWrite.value.replaceAll("<br>", "\n").replaceAll("&gt;", ">").replaceAll("&lt;", "<").replaceAll("&amp;", "&") + "[arpanBreak]" + $('#label' + divUID).css("color"));
         noteWrite.value = '';
     }
     else {
         noteWrite.focus();
     }
-    if (divId > 1) {
+    if (newNoteCont.querySelectorAll("div").length > 3) {
         $("#clearAllDiv").fadeIn();
+    }
+    else{
+        $("#clearAllDiv").fadeOut();
     }
 }
 
@@ -146,9 +152,12 @@ function deleteCurrent(whichDiv) {
                 console.log("arpanDelete[arpanBreak]"+undoDeleteDiv);
                 deleteDiv.remove();
                 deletingItem = false;
-                if (allNotes.querySelectorAll('div').length <= 4) {
+                if (newNoteCont.querySelectorAll("div").length > 3) {
+                    $("#clearAllDiv").fadeIn();
+                }
+                else{
                     $("#clearAllDiv").fadeOut(600);
-                    divId = 0;
+                    //divId = 0;
                     if (state == "down") {
                         expandNote();
                     }
@@ -190,7 +199,7 @@ function hideHelp() {
 function clearAll() {
     if (deletingItem == false) {
         newNoteCont.innerHTML = "";
-        divId = 0;
+        //divId = 0;
         $("#clearAllDiv").fadeOut();
         if (state == "down") {
             expandNote();
@@ -332,8 +341,11 @@ function shareNote(toShare){
 
 function retrieveAll(newDivID, newDivText, newDivColor){
     newNoteCont.innerHTML = newNoteCont.innerHTML + '<div style="border-color: ' + newDivColor + '" ' + 'id="div' + newDivID + '"><div id="buttonsCont" style="position: relative; display: flex; justify-content: flex-start; align-items: center; flex-direction: row;  height: auto; width: auto; padding-right: 7%; margin-top: 0%;"><button class="material-icons" style=" text-align: center; margin-right: 35%;" onclick="deleteCurrent(' + "'div" + newDivID + "')" + '">' + 'delete_forever</button><button class="material-icons" style="position:relative; color: darkgreen;" onclick="editFunction(' + "'label" + newDivID + "')" + '">edit</button>  <button class="material-icons" style="position: relative; color: blue;" onclick="shareNote('+"'label"+newDivID+"')"+'">share</button>  </div><div><label style="color: ' + newDivColor + '" id="label' + newDivID + '">' + newDivText.replaceAll("<br>", "\n").replaceAll("&gt;", ">").replaceAll("&lt;", "<").replaceAll("&amp;", "&") + '</label><br></div>' + '</div>';
-    divId++;
-    if (divId > 1) {
+    
+    if (newNoteCont.querySelectorAll("div").length > 3) {
         $("#clearAllDiv").fadeIn();
+    }
+    else{
+        $("#clearAllDiv").fadeOut();
     }
 }
