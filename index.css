@@ -1,0 +1,322 @@
+*{
+    padding: 0;
+    margin: 0;
+    scroll-behavior: smooth;
+    outline: none;
+}
+
+body{
+    background-color: whitesmoke;
+}
+
+header{
+    background-color: #6c5ce7;
+    position: relative;
+    padding: 3%;
+}
+
+header label{
+    color: white;
+    font-size: 200%;
+    font-family: cursive;
+    opacity: 0.5;
+}
+
+header a{
+    color: white;
+    font-size: 200%;
+    font-family: cursive;
+}
+
+header h5{
+    float: right;
+    color: pink;
+    height: 100%;
+    position: absolute;
+    right: 0%;
+    top: 0%;
+    width: 20%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+#mainBody{
+    padding-top: 1%;
+    position: relative;
+    background-color: #b5b0fc;
+    /*B5B0FC*/
+    text-align: center;
+    height: 30%;
+    background-blend-mode: lighten;
+}
+
+#mainBody textarea{
+    font-size: 130%;
+    width: 70%;
+    padding-left: 2%;
+    padding-right: 1%;
+    padding-top: 1%;
+    padding-bottom: 1%;
+    margin-top: 1%;
+    position: inherit;
+    height: 50%;
+}
+
+#mainBody button{
+    margin-top: 10%;
+    float: inline-end;
+    font-size: 130%;
+    padding-top: 1%;
+    padding-bottom: 1%;
+    padding-left: 5%;
+    padding-right: 5%;
+    text-align: center;
+    align-self: center;
+    background-color: #0984e3;
+    border: solid 1px black;
+    color: white;
+    text-shadow: 5px 5px 20px white;
+    position: inherit;
+    margin-right: 1.5%;
+    border-radius: 0px;
+    
+}
+
+@keyframes shake {
+    0% { transform: translate(1px, 1px) rotate(0deg);}
+    10% { transform: translate(-1px, -2px) rotate(-1deg); }
+    20% { transform: translate(-3px, 0px) rotate(1deg); }
+    30% { transform: translate(3px, 2px) rotate(0deg); }
+    40% { transform: translate(1px, -1px) rotate(1deg); }
+    50% { transform: translate(-1px, 2px) rotate(-1deg); }
+    60% { transform: translate(-3px, 1px) rotate(0deg); }
+    70% { transform: translate(3px, 1px) rotate(-1deg); }
+    80% { transform: translate(-1px, -1px) rotate(1deg); }
+    90% { transform: translate(1px, 2px) rotate(0deg); }
+    100% { transform: translate(1px, -2px) rotate(-1deg); }
+  }
+
+#allNotes{
+    background-color: white;
+    height: 40%;
+    width: 100%;
+    transform-origin: bottom;
+    bottom: 0%;
+    position: absolute;
+    overflow-y: scroll;
+    transition: 0.5s;
+    border-top-left-radius: 28px;
+    border-top-right-radius: 28px;
+    box-shadow: 0.1px 0.1px 10px #b2bec3;
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+    flex-direction: column;
+    color: #2c3e50;
+}
+
+#expandBtn{
+    width: 20%;
+    background-color: #ecf0f1;
+    border: solid transparent 0px;
+    text-align: center;
+    color: black;
+}
+
+#allNotes div{
+    width: 100%;
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+    flex-direction: column;
+    color: #2c3e50;
+    padding-bottom: 5%;
+}
+
+#allNotes div div{
+    /*background-color: #f8c291;*/
+    background-color: whitesmoke;
+    border: dashed 2px;
+    width: 88%;
+    height: auto;
+    border-radius: 5px;
+    margin-top: 5%;
+    display: flex;
+    justify-content: center;
+    align-items: flex-start;
+    flex-direction: column;
+    padding: 2%;
+}
+
+#allNotes div div div{
+    border: solid 1px whitesmoke;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 95%;
+    padding-top: 5%;
+}
+
+#allNotes label{
+    color: #2c3e50;
+    font-size: 150%;
+    font-family: sans-serif;
+    font-weight: bolder;
+    max-width: 80%;
+    width: 80%;
+    word-wrap: break-word;
+}
+
+#allNotes button{
+    right: 5%;
+    background-color: whitesmoke;
+    border: solid 2px whitesmoke;
+    color: #e74c3c;
+    font-size: 250%;
+}
+
+#instructions{
+    position: absolute;
+    z-index: 5;
+    background-color: whitesmoke;
+    width: 100%;
+    height: 0%;
+    bottom: 0%;
+    transition: 0.5s;
+    font-family: sans-serif;
+    overflow-y: auto;
+}
+
+#instructions span{
+    float: right;
+    padding: 2%;
+    background-color: transparent;
+    border: solid transparent 0px;
+    font-family: sans-serif;
+    color: rgba(0, 0, 0, 0.7);
+}
+
+#instructions h1{
+    color: #4834d4;
+    margin-left: 2%;
+    width: 90%;
+    word-wrap: break-word;
+    max-width: 90%;
+    margin-top: 10%;
+    text-decoration: underline;
+}
+
+#instructions h3{
+    margin-left: 2%;
+    width: 86%;
+    word-wrap: break-word;
+    max-width: 86%;
+    margin-top: 2%;
+    background-color: white;
+    color: grey;
+    padding: 4%;
+}
+
+#instructions ul{
+    margin-left: 2%;
+    padding: 2%;
+}
+
+#instructions a{
+    text-decoration: none;
+}
+
+#scrollToTop{
+    background-color: #b5b0fc;
+    border: solid 1px #b5b0fc;
+    color: white;
+    border-radius: 50%;
+    position: fixed;
+    right: 5%;
+    bottom: 5%;
+    padding: 1.5%;
+    font-size: 250%;
+    display: none;
+}
+
+#editMenu{
+    background-color: rgba(0, 0, 0, 0.85);
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    top: 0%;
+    display: none;
+    justify-content: center;
+    align-items: flex-end;
+    font-family: sans-serif;
+}
+
+#editMenu div{
+    background-color: white;
+    height: 50%;
+    width: 100%;
+    border-top-left-radius: 28px;
+    border-top-right-radius: 28px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    font-size: 200%;
+    padding-bottom: 5%;
+    padding-top: 5%;
+    color: darkgrey;
+}
+
+#editMenu div textarea{
+    height: 95%;
+    width: 90%;
+    border: solid 1px grey;
+    outline: none;
+    padding-left: 5%;
+    padding-top: 5%;
+    padding-right: 5%;
+    font-size: 100%;
+    font-family: sans-serif;
+}
+
+#editMenu div div{
+    flex-direction: row;
+    height: 5%;
+}
+
+#editMenu button{
+    font-size: 70%;
+    border-radius: 50%;
+    color: white;
+    border: solid 1px white;
+    padding: 1.5%;
+}
+
+#editMenu div div hr{
+    width: 30%;
+    border: solid 0px white;
+}
+
+#undoDiv{
+    background-color: rgba(181, 176, 252, 1);
+    position: fixed;
+    bottom: 0%;
+    height: 7%;
+    width: 100%;
+    display: none;
+    justify-content: center;
+    align-items: center;
+    font-family: sans-serif;
+}
+#undoDiv div{
+  margin-right: 10%;
+  margin-left: 5%;
+  font-size: 150%;
+  color: #000000b3;
+}
+
+#buttonsCont button{
+    margin-right: 30%;
+    font-size: 200%;
+}

@@ -1,0 +1,175 @@
+<html>
+    <head>
+        <title>
+            Likho
+        </title>
+        <link rel="stylesheet" href="index.css">
+        <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
+        <script type="text/javascript">
+            if(navigator.userAgent.includes('iPhone') || navigator.userAgent.includes('iPad') || navigator.userAgent.includes('Android')){
+                //console.log(navigator.userAgent)
+                console.log("v 0.2.0");
+            }
+            else{
+                window.location.href="pc.html";
+            }
+        </script>
+    </head>
+    <body scroll="no" style="overflow: hidden">
+        <meta 
+             name='viewport' 
+             content='width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0' 
+        />
+
+
+
+        <!--Instructions Div-->
+        <div id="instructions">
+            <span><label onclick="hideHelp()" class="material-icons" style="font-size: 250%;">close</label></span>
+            <br>
+            <h1>What is this all about?</h1>
+            <h3>'Likho' is a new way of memorizing things. It works as a digital notepad. You can write your important notes, use it as a ToDo list, jot down the birth date of your loved ones, and more! We respect your privacy. Hence, your data is completely backed up locally on your device.</h3>
+            <h1>New Updates (v 0.2.0)</h1>
+            <h3>
+                <ul>
+                    <li>Now you can write a note and save it for future!</li>
+                    <li>Functionality to add multi-line notes.</li>
+                    <li>"Clear All" button helps to clear all the notes at once.</li>
+                    <li>"Scroll to top" button added.</li>
+                    <li>Minor changes to the UI and it's elements.</li>
+                    <li>Seamlessly contact the developer on WhatsApp.</li>
+                    <li>More polished experience.</li>
+                </ul>
+            </h3>
+            <h1>How to get started?</h1>
+            <h3>
+                <ul>
+                    <li>
+                        First and foremost, write something in the provided textbox.
+                    </li>
+                    <br>
+                    <li>
+                        Select a color you would like to apply to your text.
+                    </li>
+                    <br>
+                    <li>
+                        Press the 'Add' button to make a new entry on your list.
+                    </li>
+                    <br>
+                    <li>
+                        You can scroll through the items you have just noted.
+                    </li>
+                </ul>
+            </h3>
+            <h1>What are the pros?</h1>
+            <h3>
+                <ul>
+                    <li>User friendly.</li>
+                    <br>
+                    <li>Works on almost every possible mobile device.</li>
+                    <br>
+                    <li>Store your notes for future use.</li>
+                    <br>
+                    <li>Extremely lightweight application.</li>
+                    <br>
+                    <li>Seamless performance.</li>
+                    <br>
+                    <li>Choose colors as per the importance of your note.</li>
+                </ul>
+            </h3>
+            <h1>What are the cons?</h1>
+            <h3>
+                Does not provide cross-device syncing yet.
+            </h3>
+            <h1>Contact the Developer</h1>
+            <h3 id="developerInfo">
+                Name: ARPAN BHATTACHARYA
+                <br>
+                <br>
+                <button onclick="console.log('arpanContact');" style="padding: 5%; padding-right: 25%; background-image: url('https://static.whatsapp.net/rsrc.php/v3/yz/r/ujTY9i_Jhs1.png'); background-repeat: no-repeat; background-position: 95% 50%; background-color: black; color: white; font-size: 140%;">Chat Now!</button>
+            </h3>
+            <br>
+        </div>
+
+        <!-- App Logo-->
+        <header>
+            <a>L</a><label>ikho</label>
+
+            <h5><label onclick="showAbout()" class="material-icons" style="font-size: 250%; color: white;">info</label></h5>
+        </header>
+
+        <!-- Top Menu-->
+        <div id="mainBody">
+
+            <!--Note-->
+            <textarea type="text" id="noteWrite" placeholder="Write a note"></textarea>
+
+            <!--Note Add Btn-->
+            <button onclick="newNote()">Add</button>
+            <br>
+
+            <!--Space 1-->
+            <hr style="border: solid 5px transparent;">
+
+            <!--**********COLORS START************-->
+            <button onclick="changeClr('black')" style="background-color: #2c3e50;  padding-left: 4%; padding-right: 4%; height: 25%; height: 35px;">&nbsp;</button>
+            <button onclick="changeClr('red')" style="background-color: #ff7675;  padding-left: 4%; padding-right: 4%; height: 25%; height: 35px;">&nbsp;</button>
+            <button onclick="changeClr('green')" style="background-color: #00b894; padding-left: 4%; padding-right: 4%; height: 25%; height: 35px;">&nbsp;</button>
+            <button onclick="changeClr('yellow')" style="background-color: #fbc562; padding-left: 4%; padding-right: 4%; height: 25%; height: 35px;">&nbsp;</button>
+            <button onclick="changeClr('blue')" style="background-color: #74b9ff; padding-left: 4%; padding-right: 4%; height: 25%; height: 35px;">&nbsp;</button>
+            <button onclick="changeClr('pink')" style="background-color: #fab1a0; padding-left: 4%; padding-right: 4%; height: 25%; height: 35px;">&nbsp;</button>
+            <button onclick="changeClr('orange')" style="background-color: #d35400; padding-left: 4%; padding-right: 4%; height: 25%; height: 35px;">&nbsp;</button>
+            <!--**********COLORS END**************-->
+        
+        </div>
+
+        <label onclick="showHelp()" style="float: right; margin-top: 2%; margin-right: 2%; font-family: sans-serif; font-size: 90%; color: darkred; text-decoration: underline;">Need Help?</label>
+
+        <!--Allnotes Container-->
+        <div id="allNotes" draggable="false" onscroll="/*expandNoteScroll();*/scrollDirection(this.scrollTop);">
+
+            <!-- tap to expand notes-->
+            <a id="expandBtn" onclick="expandNote()" class="material-icons">arrow_drop_up</a>
+
+            <!-- clear all button added-->
+            <div id="clearAllDiv" style="display: none; justify-content: center; align-items: flex-start;"><h3 onclick="console.log('arpanClearAll')" style="margin-left: 5%; font-family: sans-serif; padding-top: 5%; font-size: 130%; text-decoration: underline; color: indianred;">Clear All</h3></div>
+           
+            <!--Holds all the new notes, works as new note container-->
+            <div id="newNoteCont">
+
+           </div>
+        </div>
+
+
+        <!-- Scroll to top button helps in one tap scrolling to the top-->
+        <button id="scrollToTop" class="material-icons" onclick="allNotes.scrollTop = 0;">arrow_upward</button>
+
+        <!--Editing menu div resides here-->
+        <div id="editMenu">
+            <div>
+                <label><u>Edit Note</u></label>
+                <br>
+                <textarea id="editTextArea" oninput="editTickShow();"></textarea>
+                <br>
+                <div>
+                    <button id="editTick" class="material-icons" style="background-color: darkgreen; display: none;" onclick="if($('#editTextArea').val()==$('#'+nowEditing).text()){}else{$('#'+nowEditing).text($('#editTextArea').val().replaceAll(/\n/g, '<br>').replaceAll('>','&gt;').replaceAll('<','&lt;').replaceAll('&','&amp;')); $('#editMenu').fadeOut(); console.log('arpanUpdate[arpanBreak]'+nowEditing.replace('label','div')+'[arpanBreak]'+$('#editTextArea').val()+'[arpanBreak]'+$('#'+nowEditing).css('color'));$('#editTick').fadeOut(100);$('#editSpace').fadeOut(100);}">done</button>
+                    <hr id="editSpace" style="display: none;">
+                    <button class="material-icons" style="background-color: indianred;" onclick="$('#editMenu').fadeOut();$('#editTick').fadeOut(100);$('#editSpace').fadeOut(100);">close</button>
+                </div>
+            </div>
+        </div>
+
+
+        <!--Undo DIV, helps in undoing last delete action-->
+        <div id="undoDiv">
+            <div style="width: 85%;">Deleting a note... <label id="undoBtn">(6s)</label></div>
+            <div style="width: 15%; display: flex; justify-content: center; align-items: center; color: #5241d2"><label onclick="undoDeleteTimer()">undo</label>
+            
+            </div>
+        </div>
+    </body>
+
+
+    <script type="text/javascript" src="index.js"></script>
+</html>
